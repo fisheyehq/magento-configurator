@@ -15,15 +15,15 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
         // Decode the YAML File
         $globalClass = new Zend_Config_Yaml($globalFile,
             NULL,
-            array('ignore_constants' => true));
+            ['ignore_constants' => true]);
         $globalArray = $globalClass->toArray();
 
-        $localArray = array();
+        $localArray = [];
         if (file_exists($localFile)) {
             // Decode the YAML File
             $localClass = new Zend_Config_Yaml($localFile,
                 NULL,
-                array('ignore_constants' => true));
+                ['ignore_constants' => true]);
             $localArray = $localClass->toArray();
         }
 

@@ -48,7 +48,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
             }
 
             $data = array_replace_recursive($this->_getProductDefaultSettings(),$data);
-            $product->setMediaGallery(array('images'=>array (), 'values'=>array ()));
+            $product->setMediaGallery(['images'=>[], 'values'=>[]]);
 
             foreach ($data as $key=>$value) {
 
@@ -74,11 +74,11 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
                 // QTY
                 if ($key == "qty") {
                     $key = 'stock_data';
-                    $value = array(
+                    $value = [
                         'use_config_manage_stock' => 1,
                         'is_in_stock' => 1,
                         'qty' => $data['qty']
-                    );
+                    ];
 
 
                     $stockItem = Mage::getModel('cataloginventory/stock_item');
@@ -128,7 +128,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
 
                 // If it is a multiselect value, get the relevant IDs to save as the value
                 if (!$this->_isStandardAttributeOption($key) && $attribute->getFrontendInput() == "multiselect") {
-                    $values = array();
+                    $values = [];
                     foreach ($value as $optionValue) {
                         $optionId = $this->_getAttributeOptionIdByValue($attribute,$optionValue);
                         if (!$optionId) {
@@ -156,7 +156,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
                 // If the attribute is a media image attribute
                 if (!$this->_isStandardAttributeOption($key) && $attribute->getFrontendInput() == "media_image") {
                     if (isset($this->_images[$value]) && file_exists($this->_images[$value])) {
-                        $product->addImageToMediaGallery($this->_images[$value], array($key), false, false);
+                        $product->addImageToMediaGallery($this->_images[$value], [$key], false, false);
                     } else {
                         $this->log($this->__('No image set in cache'));
                     }
@@ -184,8 +184,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
 //            $imageLocation = Mage::getBaseDir('etc') . '/components/images/';
 //
 //            if ((isset($data['imagefile'])) && (file_exists($imageLocation . $data['imagefile']))) {
-//                $product->setMediaGallery(array('images'=>array (), 'values'=>array ()));
-//                $product->addImageToMediaGallery($imageLocation . $data['imagefile'], array('image', 'small_image', 'thumbnail'), false, false);
+//                $product->setMediaGallery(['images'=>[], 'values'=>[]]);
+//                $product->addImageToMediaGallery($imageLocation . $data['imagefile'], ['image', 'small_image', 'thumbnail'], false, false);
 //                $this->log($this->__('Product (%s) - Attribute %s -> %s', $sku, 'image', $data['imagefile']),$child);
 //            }
 
@@ -200,7 +200,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
                 }
 
                 // Loop through the attributes
-                $configurableAttributes = array();
+                $configurableAttributes = [];
                 foreach ($data['configurable_attributes'] as $configurableAttr) {
                     $configurableAttributes[] =$this->_getAttribute($configurableAttr)->getId();
                 }
@@ -217,7 +217,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
 
 
                 // Associate products
-                $configurableProductsData = array();
+                $configurableProductsData = [];
                 foreach ($data['simple_products'] as $key=>$sProductConfig) {
 
                     // Need to create/update the simple product first
@@ -234,13 +234,13 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
                     // Associate the product
                     foreach ($sProductConfig['attributes'] as $attributeKey=>$attributeValue) {
                         $attribute = $this->_getAttribute($attributeKey);
-                        $configurableProductsData[$sProduct->getId()][] = array(
+                        $configurableProductsData[$sProduct->getId()][] = [
                             'label'         => $sProductConfig['label'],
                             'attribute'     => $attribute->getId(),
                             'value'         => $this->_getAttributeOptionIdByValue($attribute, $attributeValue),
                             'is_percent'    => $sProductConfig['is_percent'],
                             'pricing_value' => $sProductConfig['pricing_value']
-                        );
+                        ];
                     }
                     unset($sProductConfig['attributes']);
                 }
@@ -252,7 +252,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
 
             $product->setCreatedAt(strtotime('now'));
             $product->save();
-            $this->_images = array();
+            $this->_images = [];
             return $product;
         } catch (Exception $e) {
             $this->log($e->getMessage());
@@ -267,7 +267,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
      */
     private function _getWebsiteIds($websites)
     {
-        $ids = array();
+        $ids = [];
         foreach ($websites as $website) {
             $ids[] = Mage::getResourceModel('core/website_collection')
                 ->addFieldToFilter('code',$website)
@@ -392,7 +392,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
 
     private function _getProductDefaultSettings()
     {
-        return array(
+        return [
             'type_id'           => 'simple',
             'has_options'       => 0,
             'required_options'  => 0,
@@ -406,6 +406,6 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
             'is_recurring'      => 0,
             'visibility'        => 4,
             'tax_class_id'      => 0
-        );
+        ];
     }
 }

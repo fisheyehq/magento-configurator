@@ -95,7 +95,7 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
         if (isset($data['stores'])) {
 
             // Loop through the store view names to get its corresponding ID
-            $storeIds = array();
+            $storeIds = [];
             foreach ($data['stores'] as $storeViewName) {
                 $store = Mage::getModel('core/store')->load($storeViewName,'code');
                 if (!$store->getId()) {
@@ -120,7 +120,7 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
             unset($data['stores']);
         } else {
 
-            $block->setStores(array(0));
+            $block->setStores([0]);
         }
 
         // Loop through block attributes

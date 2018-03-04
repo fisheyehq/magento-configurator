@@ -4,13 +4,13 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
 {
     protected $_componentName = 'tax';
 
-    protected $_defaultRate = array(
+    protected $_defaultRate = [
         'tax_region_id' => 0,
         'tax_postcode'  => '*',
         'zip_is_range'  => null,
         'zip_from'      => null,
         'zip_to'        => null
-    );
+    ];
 
     protected function _processComponent($data)
     {
@@ -103,7 +103,7 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
 
         unset($taxRules);
 
-        $data = array_merge_recursive($data,array('priority'=> 1,'position' => 1));
+        $data = array_merge_recursive($data,['priority'=> 1,'position' => 1]);
         $toSave = false;
         foreach ($data as $key=>$value) {
             if ($key == "tax_rate" || $key == "customer_tax_class" || $key == "product_tax_class") {

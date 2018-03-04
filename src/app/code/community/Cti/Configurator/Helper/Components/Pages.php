@@ -100,7 +100,7 @@ class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_C
         if (isset($data['stores'])) {
 
             // Loop through the store view names to get its corresponding ID
-            $storeIds = array();
+            $storeIds = [];
             foreach ($data['stores'] as $storeViewName) {
                 $store = Mage::getModel('core/store')->load($storeViewName,'code');
                 if (!$store->getId()) {
@@ -125,7 +125,7 @@ class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_C
             unset($data['stores']);
         } else {
 
-            $page->setStores(array(0));
+            $page->setStores([0]);
         }
 
         // Loop through page attributes

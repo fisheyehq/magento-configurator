@@ -83,7 +83,7 @@ class Cti_Configurator_Helper_Components_Categories extends Cti_Configurator_Hel
 
         // Add products
         if (isset($data['products'])) {
-            $products = array();
+            $products = [];
             $i = 10;
             foreach ($data['products'] as $sku) {
                 $id = Mage::getModel('catalog/product')->getIdBySku($sku);

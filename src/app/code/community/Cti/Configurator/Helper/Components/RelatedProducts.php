@@ -31,7 +31,7 @@ class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurato
     {
         $this->log($this->__('Relating products for %s',$_product->getSku()));
 
-        $relatableData = array();
+        $relatableData = [];
 
         foreach ($data as $i=>$relatedSku) {
             $relatedProductId = Mage::getModel('catalog/product')->getIdBySku($relatedSku);
@@ -40,9 +40,9 @@ class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurato
                 throw new Exception($this->__('No product with sku: %s'.$relatedSku));
             }
 
-            $relatableData[$relatedProductId] = array(
+            $relatableData[$relatedProductId] = [
                 'position' => $i
-            );
+            ];
 
             $this->log($this->__('Related %s',$relatedSku),1);
 

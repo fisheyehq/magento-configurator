@@ -23,8 +23,8 @@ abstract class Cti_Configurator_Helper_Components_Abstract extends Mage_Core_Hel
                 throw new Exception('Component name is not defined');
             }
 
-            Mage::dispatchEvent('configurator_process_before',array('object'=>$this));
-            Mage::dispatchEvent($this->_componentName.'_configurator_process_before',array('object'=>$this));
+            Mage::dispatchEvent('configurator_process_before',['object'=>$this]);
+            Mage::dispatchEvent($this->_componentName.'_configurator_process_before',['object'=>$this]);
 
             foreach ($this->_filePaths as $filePath) {
                 $this->_data = array_merge_recursive($this->_data, $this->_processFile($filePath));
@@ -36,8 +36,8 @@ abstract class Cti_Configurator_Helper_Components_Abstract extends Mage_Core_Hel
             }
             $this->_processComponent($this->_data);
 
-            Mage::dispatchEvent('configurator_process_after',array('object'=>$this));
-            Mage::dispatchEvent($this->_componentName.'_configurator_process_after',array('object'=>$this));
+            Mage::dispatchEvent('configurator_process_after',['object'=>$this]);
+            Mage::dispatchEvent($this->_componentName.'_configurator_process_after',['object'=>$this]);
 
         } catch (Exception $e) {
             Mage::logException($e);

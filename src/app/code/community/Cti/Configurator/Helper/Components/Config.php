@@ -119,7 +119,7 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
 
     private function _mergeInheritables($config,$inheritables)
     {
-        $data = array();
+        $data = [];
         if (isset($config['core_config'])) {
             $data = $config['core_config'];
         }

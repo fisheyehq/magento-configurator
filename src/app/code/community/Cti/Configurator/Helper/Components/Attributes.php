@@ -122,7 +122,7 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
     {
         $currentOptions = $attribute->getSource()->getAllOptions();
 
-        $currentOptionFormat = array();
+        $currentOptionFormat = [];
         foreach ($currentOptions as $option) {
             if ($option['label'] != '') {
                 $currentOptionFormat[] = $option['label'];
@@ -150,13 +150,13 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
             /*
             $attribute->setData(
                 'option',
-                array(
-                    'value'=>array(
-                        'option'=>array(
+                [
+                    'value'=>[
+                        'option'=>[
                             $option
-                        )
-                    )
-                )
+                        ]
+                    ]
+                ]
             );
             $attribute->save();
             */
@@ -209,7 +209,7 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
      */
     private function _getAttributeDefaultSettings()
     {
-        return array(
+        return [
             'is_global'                 => 0,
             'is_visible'                => 1,
             'is_searchable'             => 0,
@@ -236,6 +236,6 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
             'frontend_input'            => 'boolean',
             'backend_type'              => 'static',
             'search_weight'             => 1 // EE only
-        );
+        ];
     }
 }
