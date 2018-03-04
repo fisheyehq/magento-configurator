@@ -160,7 +160,6 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
 
     private function _checkAndSaveConfig($path,$value,$scope = 'default',$scopeId = 0,$code = null) {
 
-
         switch ($scope) {
             case 'websites':
                 $valueCheck = (string) Mage::app()->getWebsite($scopeId)->getConfig($path);
@@ -172,25 +171,18 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
                 $valueCheck = (string) Mage::app()->getConfig()->getNode($path,$scope);
                 break;
         }
+        $this->_coreConfigModel->saveConfig($path,$value,$scope,$scopeId);
 
-
-        if ($value != $valueCheck) {
-            $this->_coreConfigModel->saveConfig($path,$value,$scope,$scopeId);
-
-            switch ($scope) {
-                case 'websites':
-                    $this->log($this->__('Saved path for website: %s - %s to %s',$code,$path,$value));
-                    break;
-                case 'stores':
-                    $this->log($this->__('Saved path for store: %s - %s to %s',$code,$path,$value));
-                    break;
-                default:
-                    $this->log($this->__('Saved default path for %s to %s',$path,$value));
-                    break;
-            }
-
+        switch ($scope) {
+            case 'websites':
+                $this->log($this->__('Saved path for website: %s - %s to %s',$code,$path,$value));
+                break;
+            case 'stores':
+                $this->log($this->__('Saved path for store: %s - %s to %s',$code,$path,$value));
+                break;
+            default:
+                $this->log($this->__('Saved default path for %s to %s',$path,$value));
+                break;
         }
-
-
     }
 }
