@@ -6,39 +6,13 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
 
     public function __construct() {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'config.yaml';
-        $this->_filePath2 = Mage::getBaseDir().DS.'app'.DS.'etc'.DS.'local_components'.DS.'config.yaml'; // Could be some symlinked file environment specific
+        $this->_filePaths = [
+            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'config' . DS . 'global.yaml',
+            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'config' . DS . 'dev.yaml',
+        ];
 
         $this->_coreConfigModel = Mage::getModel('core/config');
 
-    }
-
-    protected function _processFile($globalFile,$localFile = null) {
-
-        if (!file_exists($globalFile)) {
-            $this->log("No configuration component found in: " . $globalFile);
-            $this->log("Skipping");
-            throw new Mage_Core_Exception("Cannot find global configuration YAML file.");
-        }
-
-        // Decode the YAML File
-        $globalClass = new Zend_Config_Yaml($globalFile,
-            NULL,
-            array('ignore_constants' => true));
-        $globalArray = $globalClass->toArray();
-
-        $localArray = array();
-        if (file_exists($localFile)) {
-            // Decode the YAML File
-            $localClass = new Zend_Config_Yaml($localFile,
-                NULL,
-                array('ignore_constants' => true));
-            $localArray = $localClass->toArray();
-        }
-
-        $data = array_merge_recursive($globalArray,$localArray);
-
-        return $data;
     }
 
     protected function _processComponent($data) {

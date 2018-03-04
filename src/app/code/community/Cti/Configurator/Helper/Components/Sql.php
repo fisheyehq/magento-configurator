@@ -6,38 +6,11 @@ class Cti_Configurator_Helper_Components_Sql extends Cti_Configurator_Helper_Com
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'sql.yaml';
-        $this->_filePath2 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'local_components' . DS . 'sql.yaml'; // Could be some symlinked file environment specific
+        $this->_filePaths = [
+            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'sql.yaml',
+            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'local_components' . DS . 'sql.yaml' // Could be some symlinked file environment specific
+        ];
 
-    }
-
-    protected function _processFile($globalFile, $localFile = null)
-    {
-
-        if (!file_exists($globalFile)) {
-            $this->log("No sql component found in: " . $globalFile);
-            $this->log("Skipping");
-            throw new Mage_Core_Exception("Cannot find global sql YAML file.");
-        }
-
-        // Decode the YAML File
-        $globalClass = new Zend_Config_Yaml($globalFile,
-            NULL,
-            array('ignore_constants' => true));
-        $globalArray = $globalClass->toArray();
-
-        $localArray = array();
-        if (file_exists($localFile)) {
-            // Decode the YAML File
-            $localClass = new Zend_Config_Yaml($localFile,
-                NULL,
-                array('ignore_constants' => true));
-            $localArray = $localClass->toArray();
-        }
-
-        $data = array_merge_recursive($globalArray, $localArray);
-
-        return $data;
     }
 
     protected function _processComponent($data) {

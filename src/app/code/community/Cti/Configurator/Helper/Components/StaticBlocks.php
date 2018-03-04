@@ -4,25 +4,7 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
     public function __construct()
     {
         $this->_componentName = 'staticblocks';
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'static-blocks.yaml';
-    }
-
-    protected function _processFile($globalFile, $localFile = null)
-    {
-
-        if (!file_exists($globalFile)) {
-            throw new Mage_Core_Exception("Cannot find static blocks configuration YAML file.");
-        }
-
-        // Decode the YAML File
-        $globalClass = new Zend_Config_Yaml($globalFile,
-            NULL,
-            array('ignore_constants' => true));
-
-        $globalArray = $globalClass->toArray();
-
-
-        return $globalArray;
+        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'static-blocks.yaml';
     }
 
     protected function _processComponent($data) {

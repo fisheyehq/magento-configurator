@@ -3,23 +3,7 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
 
     public function __construct() {
         $this->_componentName = 'attribute_sets';
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'attribute-sets.yaml';
-    }
-
-    protected function _processFile($globalFile,$localFile = null) {
-
-        if (!file_exists($globalFile)) {
-            throw new Mage_Core_Exception("Cannot find global configuration YAML file.");
-        }
-
-        // Decode the YAML File
-        $globalClass = new Zend_Config_Yaml($globalFile,
-            NULL,
-            array('ignore_constants' => true));
-        $globalArray = $globalClass->toArray();
-
-        return $globalArray;
-
+        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'attribute-sets.yaml';
     }
 
     protected function _processComponent($data) {

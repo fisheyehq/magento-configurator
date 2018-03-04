@@ -5,7 +5,7 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
 
     public function __construct() {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'websites.yaml';
+        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'websites.yaml';
 
     }
 
