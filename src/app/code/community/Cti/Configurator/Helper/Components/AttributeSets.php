@@ -1,12 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_Helper_Components_Abstract {
 
-    public function __construct() {
-        $this->_componentName = 'attribute_sets';
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'attribute-sets.yaml';
-    }
+class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_Helper_Components_Abstract
+{
+    protected $_componentName = 'attribute_sets';
 
-    protected function _processComponent($data) {
+    protected function _processComponent($data)
+    {
 
         if (isset($data['attribute_sets'])) {
 
@@ -75,7 +74,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @param $attributeConfig
      * @return Mage_Eav_Model_Entity_Attribute_Set
      */
-    private function _getAttributeSet($attributeConfig) {
+    private function _getAttributeSet($attributeConfig)
+    {
         $entityTypeId = Mage::getModel('catalog/product')
             ->getResource()
             ->getEntityType()
@@ -100,8 +100,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @return Mage_Eav_Model_Entity_Attribute_Set
      * @see http://magento.stackexchange.com/questions/4905/programmatically-create-new-attribute-set-while-inheriting-from-another
      */
-    private function _createAttributeSet($attributeConfig) {
-
+    private function _createAttributeSet($attributeConfig)
+    {
         $entityTypeId = $this->_getEntityTypeId();
 
         $attributeSet = Mage::getModel('eav/entity_attribute_set')
@@ -119,8 +119,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @param Mage_Eav_Model_Entity_Attribute_Set $attributeSet
      * @param $inheritFromSetName
      */
-    private function _inheritAttributeSet(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$inheritFromSetName) {
-
+    private function _inheritAttributeSet(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$inheritFromSetName)
+    {
         $entityTypeId = $this->_getEntityTypeId();
 
         $inheritFromSetId = Mage::getResourceModel('eav/entity_attribute_set_collection')
@@ -142,7 +142,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @param $attributeGroupName
      * @return mixed
      */
-    private function _getAttributeGroupId(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$attributeGroupName) {
+    private function _getAttributeGroupId(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$attributeGroupName)
+    {
         return Mage::getResourceModel('eav/entity_attribute_group_collection')
             ->addFieldToFilter('attribute_set_id',$attributeSet->getId())
             ->addFieldToFilter('attribute_group_name',$attributeGroupName)
@@ -150,7 +151,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
             ->getId();
     }
 
-    private function _createAttributeGroup(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$attributeGroupName,$index) {
+    private function _createAttributeGroup(Mage_Eav_Model_Entity_Attribute_Set $attributeSet,$attributeGroupName,$index)
+    {
         $modelGroup = Mage::getModel('eav/entity_attribute_group');
         $modelGroup->setAttributeGroupName($attributeGroupName)
             ->setAttributeSetId($attributeSet->getId())
@@ -166,7 +168,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @param $code
      * @return bool|Varien_Object
      */
-    private function _getAttribute($code) {
+    private function _getAttribute($code)
+    {
 
         $entityTypeId = $this->_getEntityTypeId();
 
@@ -189,7 +192,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
      * @param Mage_Eav_Model_Entity_Attribute_Set $attributeSet
      * @param int $attributeGroupId
      */
-    protected function _assignAttributeToAttributeSet($attribute,$attributeSet,$attributeGroupId) {
+    protected function _assignAttributeToAttributeSet($attribute,$attributeSet,$attributeGroupId)
+    {
 
         $entityTypeId = $this->_getEntityTypeId();
 
@@ -197,7 +201,8 @@ class Cti_Configurator_Helper_Components_AttributeSets extends Cti_Configurator_
         $setup->addAttributeToSet($entityTypeId,$attributeSet->getId(),$attributeGroupId,$attribute->getId());
     }
 
-    private function _getEntityTypeId() {
+    private function _getEntityTypeId()
+    {
         return Mage::getModel('catalog/product')
             ->getResource()
             ->getEntityType()

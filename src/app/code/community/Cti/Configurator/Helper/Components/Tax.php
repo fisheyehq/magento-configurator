@@ -1,8 +1,9 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Components_Abstract
 {
-
     protected $_componentName = 'tax';
+
     protected $_defaultRate = array(
         'tax_region_id' => 0,
         'tax_postcode'  => '*',
@@ -11,16 +12,8 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
         'zip_to'        => null
     );
 
-    public function __construct()
-    {
-
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'tax.yaml';
-
-    }
-
     protected function _processComponent($data)
     {
-
         // Loop through the customer classes
         if (isset($data['customer_classes'])) {
             foreach ($data['customer_classes'] as $customerClass) {
@@ -50,7 +43,8 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
         }
     }
 
-    private function _addTaxClass($name, $type) {
+    private function _addTaxClass($name, $type)
+    {
         $taxClasses = Mage::getResourceModel('tax/class_collection')
             ->addFieldToFilter('class_type',$type)
             ->addFieldToFilter('class_name',$name);
@@ -69,7 +63,8 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
         }
     }
 
-    private function _addRate($code,$data) {
+    private function _addRate($code,$data)
+    {
         $taxRate = Mage::getModel('tax/calculation_rate')->load($code,'code');
         if (!$taxRate->getId()) {
             $taxRate = Mage::getModel('tax/calculation_rate')->setCode($code);
@@ -96,8 +91,8 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
         }
     }
 
-    private function _addRule($data) {
-
+    private function _addRule($data)
+    {
         $taxRules = Mage::getResourceModel('tax/calculation_rule_collection')
             ->addFieldToFilter('code',$data['code']);
         if ($taxRules->count()) {
@@ -176,9 +171,6 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
         } catch (Exception $e) {
             $this->log($e->getMessage());
         }
-
-
-
     }
 
     /**
@@ -187,7 +179,8 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
      *
      * @return Mage_Tax_Model_Class
      */
-    private function _getTaxClass($name,$type) {
+    private function _getTaxClass($name,$type)
+    {
         $taxClasses = Mage::getResourceModel('tax/class_collection')
             ->addFieldToFilter('class_type',$type)
             ->addFieldToFilter('class_name',$name);

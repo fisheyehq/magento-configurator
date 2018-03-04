@@ -1,18 +1,11 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Categories extends Cti_Configurator_Helper_Components_Abstract
 {
-
     protected $_componentName = 'categories';
 
-    public function __construct()
+    protected function _processComponent($data)
     {
-
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'categories.yaml';
-
-    }
-
-    protected function _processComponent($data) {
-
         if (isset($data['categories'])) {
 
             foreach ($data['categories'] as $i=>$catData) {
@@ -29,8 +22,8 @@ class Cti_Configurator_Helper_Components_Categories extends Cti_Configurator_Hel
      * @param Mage_Catalog_Model_Category $parent
      * @throws Mage_Core_Exception
      */
-    protected function _addCategory($data,Mage_Catalog_Model_Category $parent = null) {
-
+    protected function _addCategory($data,Mage_Catalog_Model_Category $parent = null)
+    {
         // If parent category is null then just set it as the store groups root category
         if ($parent == null && isset($data['store_group'])) {
             $storeGroup = Mage::getResourceModel('core/store_group_collection')

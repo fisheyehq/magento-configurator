@@ -1,13 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_CustomerGroups extends Cti_Configurator_Helper_Components_Abstract {
 
-    public function __construct() {
-        $this->_componentName = 'customer_groups';
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'customer-groups.yaml';
-    }
+class Cti_Configurator_Helper_Components_CustomerGroups extends Cti_Configurator_Helper_Components_Abstract
+{
+    protected $_componentName = 'customer_groups';
 
-    protected function _processComponent($data) {
-
+    protected function _processComponent($data)
+    {
         if (isset($data['groups'])) {
             foreach ($data['groups'] as $i=>$_group) {
                 $group = Mage::getModel('customer/group')->load($_group['customer_group_code'],'customer_group_code');
@@ -43,7 +41,8 @@ class Cti_Configurator_Helper_Components_CustomerGroups extends Cti_Configurator
      *
      * @return Mage_Tax_Model_Class
      */
-    private function _getTaxClass($name,$type) {
+    private function _getTaxClass($name,$type)
+    {
         $taxClasses = Mage::getResourceModel('tax/class_collection')
             ->addFieldToFilter('class_type',$type)
             ->addFieldToFilter('class_name',$name);

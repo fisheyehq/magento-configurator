@@ -1,12 +1,8 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_Components_Abstract
 {
-
-    public function __construct()
-    {
-        $this->_componentName = 'pages';
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'pages.yaml';
-    }
+    protected $_componentName = 'pages';
 
     protected function _processComponent($data)
     {
@@ -89,8 +85,8 @@ class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_C
      * @param $data
      * @throws Exception
      */
-    private function _createUpdatePage($identifier,Mage_Cms_Model_Page $page,$data) {
-
+    private function _createUpdatePage($identifier,Mage_Cms_Model_Page $page,$data)
+    {
         $canSave = false;
 
         // Load page model

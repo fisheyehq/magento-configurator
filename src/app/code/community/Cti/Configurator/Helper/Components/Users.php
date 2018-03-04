@@ -1,18 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_Components_Abstract {
 
-    protected $_componentName = 'Users';
-
-    public function __construct()
-    {
-
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'users.yaml';
-
-    }
+class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_Components_Abstract
+{
+    protected $_componentName = 'users';
 
     protected function _processComponent($data)
     {
-
         // Loop through the soap users and roles
         if (isset($data['soap'])) {
             if (isset($data['soap']['roles'])) {
@@ -34,7 +27,8 @@ class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_C
         }
     }
 
-    private function _addSoapUsers($users) {
+    private function _addSoapUsers($users)
+    {
         foreach ($users as $username=>$data) {
             try {
 
@@ -109,7 +103,8 @@ class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_C
         }
     }
 
-    private function _addSoapRoles($roles) {
+    private function _addSoapRoles($roles)
+    {
         foreach ($roles as $roleName=>$data) {
             try {
 
@@ -151,7 +146,8 @@ class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_C
         }
     }
 
-    private function _addSoapRules(Mage_Api_Model_Role $role,$rules) {
+    private function _addSoapRules(Mage_Api_Model_Role $role,$rules)
+    {
         foreach ($rules as $data) {
             try {
                 $canSave = false;

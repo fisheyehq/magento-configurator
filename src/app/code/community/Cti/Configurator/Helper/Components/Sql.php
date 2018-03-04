@@ -1,19 +1,11 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Sql extends Cti_Configurator_Helper_Components_Abstract
 {
     protected $_componentName = 'sql';
 
-    public function __construct()
+    protected function _processComponent($data)
     {
-
-        $this->_filePaths = [
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'sql.yaml',
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'local_components' . DS . 'sql.yaml' // Could be some symlinked file environment specific
-        ];
-
-    }
-
-    protected function _processComponent($data) {
         if (!isset($data['sql'])) {
             return;
         }

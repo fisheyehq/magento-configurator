@@ -1,0 +1,19 @@
+websites:
+  sources:
+    - app/etc/configurator/websites.yaml
+config:
+  sources:
+    - app/etc/configurator/config/global.yaml
+  env:
+    staging:
+      sources:
+        - app/etc/configurator/config/staging.yaml
+    build:
+      sources:
+        - app/etc/configurator/config/build.yaml
+    dev:
+      sources:
+        - app/etc/configurator/config/dev.yaml
+attributes:
+  sources:
+    - app/etc/configurator/attributes.yaml

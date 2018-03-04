@@ -1,14 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_Helper_Components_Abstract {
 
-    public function __construct()
+class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_Helper_Components_Abstract
+{
+    protected $_componentName = 'staticblocks';
+
+    protected function _processComponent($data)
     {
-        $this->_componentName = 'staticblocks';
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'static-blocks.yaml';
-    }
-
-    protected function _processComponent($data) {
-
         // Check if there is a block node in the yaml
         if (isset($data['blocks'])) {
 
@@ -83,7 +80,8 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
         }
     }
 
-    private function _processBlock($identifier,Mage_Cms_Model_Block $block,$data) {
+    private function _processBlock($identifier,Mage_Cms_Model_Block $block,$data)
+    {
         $canSave = false;
 
         // Load block model

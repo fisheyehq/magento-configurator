@@ -1,22 +1,17 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_Components_Abstract
 {
     protected $_componentName = 'config';
     protected $_coreConfigModel;
 
-    public function __construct() {
-
-        $this->_filePaths = [
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'config' . DS . 'global.yaml',
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'config' . DS . 'dev.yaml',
-        ];
-
+    public function __construct()
+    {
         $this->_coreConfigModel = Mage::getModel('core/config');
-
     }
 
-    protected function _processComponent($data) {
-
+    protected function _processComponent($data)
+    {
         // Loop through global configuration settings first
         if (isset($data['global'])) {
             $this->_saveDefaultConfigItems($data['global']);
@@ -46,7 +41,8 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
 
     }
 
-    private function _saveDefaultConfigItems($config) {
+    private function _saveDefaultConfigItems($config)
+    {
         if (isset($config['core_config'])) {
             foreach ($config['core_config'] as $config) {
 
@@ -65,7 +61,8 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
         }
     }
 
-    private function _saveWebsiteConfigItems(array $configs,Mage_Core_Model_Website $website) {
+    private function _saveWebsiteConfigItems(array $configs,Mage_Core_Model_Website $website)
+    {
         try {
             if (!$website->getId()) {
                 throw new Exception($this->__('Website does not exist'));
@@ -92,7 +89,8 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
         }
     }
 
-    private function _saveStoreConfigItems(array $configs,Mage_Core_Model_Store $store) {
+    private function _saveStoreConfigItems(array $configs,Mage_Core_Model_Store $store)
+    {
         try {
             if (!$store->getId()) {
                 throw new Exception($this->__('Store does not exist'));
@@ -119,7 +117,8 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
         }
     }
 
-    private function _mergeInheritables($config,$inheritables) {
+    private function _mergeInheritables($config,$inheritables)
+    {
         $data = array();
         if (isset($config['core_config'])) {
             $data = $config['core_config'];
@@ -132,7 +131,8 @@ class Cti_Configurator_Helper_Components_Config extends Cti_Configurator_Helper_
         return $data;
     }
 
-    private function _checkAndSaveConfig($path,$value,$scope = 'default',$scopeId = 0,$code = null) {
+    private function _checkAndSaveConfig($path,$value,$scope = 'default',$scopeId = 0,$code = null)
+    {
 
         switch ($scope) {
             case 'websites':

@@ -1,4 +1,5 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Media extends Cti_Configurator_Helper_Components_Abstract
 {
     protected $_componentName = 'media';
@@ -6,17 +7,11 @@ class Cti_Configurator_Helper_Components_Media extends Cti_Configurator_Helper_C
 
     public function __construct()
     {
-
-        $this->_filePaths = [
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'media.yaml',
-            Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'local_components' . DS . 'media.yaml'
-        ];
-
         $this->_coreConfigModel = Mage::getModel('core/config');
-
     }
 
-    protected function _processComponent($data) {
+    protected function _processComponent($data)
+    {
 
         try {
             // no media set
@@ -35,7 +30,8 @@ class Cti_Configurator_Helper_Components_Media extends Cti_Configurator_Helper_C
         }
     }
 
-    private function _createChildFolderFileItem($currentPath,$name,$node,$nest = 0) {
+    private function _createChildFolderFileItem($currentPath,$name,$node,$nest = 0)
+    {
         try {
 
             // Update the current path to new path

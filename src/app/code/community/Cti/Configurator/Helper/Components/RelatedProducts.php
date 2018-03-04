@@ -1,13 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurator_Helper_Components_Abstract {
 
+class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurator_Helper_Components_Abstract
+{
     protected $_componentName = 'related_products';
 
-    public function __construct() {
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'related-products.yaml';
-    }
-
-    protected function _processComponent($data) {
+    protected function _processComponent($data)
+    {
         if (isset($data['related'])) {
 
             foreach ($data['related'] as $mainSku=>$data) {
@@ -29,8 +27,8 @@ class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurato
         }
     }
 
-    private function _relateProducts(Mage_Catalog_Model_Product $_product,$data) {
-
+    private function _relateProducts(Mage_Catalog_Model_Product $_product,$data)
+    {
         $this->log($this->__('Relating products for %s',$_product->getSku()));
 
         $relatableData = array();
@@ -50,10 +48,8 @@ class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurato
 
         }
 
-
         $_product->setRelatedLinkData($relatableData);
         $_product->save();
         $this->log($this->__('Finished relating products for %s',$_product->getSku()));
     }
-
 }

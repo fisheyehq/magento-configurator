@@ -1,16 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper_Components_Abstract {
 
+class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper_Components_Abstract
+{
     protected $_componentName = 'website';
 
-    public function __construct() {
-
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'websites.yaml';
-
-    }
-
-    protected function _processFile($globalFile,$localFile = null) {
-
+    protected function _processFile($globalFile,$localFile = null)
+    {
         if (!file_exists($globalFile)) {
             $this->log("No website configuration found in: " . $globalFile);
             $this->log("Skipping");
@@ -37,8 +32,8 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
         return $data;
     }
 
-    protected function _processComponent($data) {
-
+    protected function _processComponent($data)
+    {
         if (isset($data['websites'])) {
 
             $websiteCount = 1;
@@ -69,10 +64,10 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
                 $websiteCount++;
             }
         }
-
     }
 
-    protected function _getOrCreateCategoryByName($name) {
+    protected function _getOrCreateCategoryByName($name)
+    {
         $categories = Mage::getResourceModel('catalog/category_collection')
             ->addAttributeToFilter('name',$name)
             ->addFieldToFilter('level',1);
@@ -101,8 +96,8 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
      * @param int $sortOrder
      * @return Mage_Core_Model_Website
      */
-    private function __addUpdateWebsite($config,$code,$sortOrder){
-
+    private function __addUpdateWebsite($config,$code,$sortOrder)
+    {
         // See if the website exists otherwise create the website
         $website = Mage::getModel('core/website')->load($code,'code');
         if ($website->getId()) {
@@ -129,8 +124,8 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
      * @param Mage_Core_Model_Website $website
      * @return Mage_Core_Model_Store_Group
      */
-    private function __addUpdateStoreGroup($sgConfig,$website) {
-
+    private function __addUpdateStoreGroup($sgConfig,$website)
+    {
         // See if the store group exists otherwise create a store group
         $storeGroup = Mage::getModel('core/store_group')->load($sgConfig['name'],'name');
         if ($storeGroup->getId()) {
@@ -160,8 +155,8 @@ class Cti_Configurator_Helper_Components_Website extends Cti_Configurator_Helper
      * @param   Mage_Core_Model_Store_Group $storeGroup
      * @return  Mage_Core_Model_Store
      */
-    private function __addUpdateStore($sConfig,$storeGroup) {
-
+    private function __addUpdateStore($sConfig,$storeGroup)
+    {
         // See if the store exists otherwise create a store
         $store = Mage::getModel('core/store')->load($sConfig['code'],'code');
         if ($store->getId()) {

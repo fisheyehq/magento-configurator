@@ -1,13 +1,11 @@
 <?php
-class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Helper_Components_Abstract {
 
-    public function __construct() {
-        $this->_componentName = 'attributes';
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'attributes.yaml';
-    }
+class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Helper_Components_Abstract
+{
+    protected $_componentName = 'attributes';
 
-    protected function _processComponent($data) {
-
+    protected function _processComponent($data)
+    {
         if (isset($data['attributes'])) {
 
             foreach ($data['attributes'] as $code=>$attributeData) {
@@ -17,7 +15,8 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
         }
     }
 
-    private function _createOrUpdateAttribute($code,$data) {
+    private function _createOrUpdateAttribute($code,$data)
+    {
         $attribute = $this->_getAttribute($code);
         $canSave = false;
         if (!$attribute) {
@@ -91,7 +90,8 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
      * @param $code
      * @return bool|Varien_Object
      */
-    private function _getAttribute($code) {
+    private function _getAttribute($code)
+    {
         $entityTypeId = Mage::getModel('catalog/product')
             ->getResource()
             ->getEntityType()
@@ -118,8 +118,8 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
      * @param $attribute
      * @param $options
      */
-    private function _maintainAttributeOptions($attribute,$options) {
-
+    private function _maintainAttributeOptions($attribute,$options)
+    {
         $currentOptions = $attribute->getSource()->getAllOptions();
 
         $currentOptionFormat = array();
@@ -207,7 +207,8 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
     /**
      * @return array
      */
-    private function _getAttributeDefaultSettings() {
+    private function _getAttributeDefaultSettings()
+    {
         return array(
             'is_global'                 => 0,
             'is_visible'                => 1,

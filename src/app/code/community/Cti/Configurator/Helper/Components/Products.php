@@ -1,8 +1,10 @@
 <?php
+
 class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helper_Components_Abstract
 {
+    protected $_componentName = 'products';
 
-    protected $_standardAttributes = array(
+    protected $_standardAttributes = [
         'attribute_set_id',
         'type_id',
         'website_ids',
@@ -17,17 +19,13 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
         'msrp_enabled',
         'msrp_display_actual_price_type',
         'is_recurring',
-        'gift_message_available');
+        'gift_message_available'
+    ];
 
-    protected $_componentName = 'products';
+    protected $_images = [];
 
-    protected $_images = array();
-
-    public function __construct() {
-        $this->_filePaths[] = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'products.yaml';
-    }
-
-    protected function _processComponent($data) {
+    protected function _processComponent($data)
+    {
         if (isset($data['products'])) {
 
             foreach ($data['products'] as $i=>$data) {
@@ -37,8 +35,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
         }
     }
 
-    private function _addUpdateProduct($sku,$data,$child = false) {
-
+    private function _addUpdateProduct($sku,$data,$child = false)
+    {
         try {
             $productId = Mage::getModel('catalog/product')->getIdBySku($sku);
 
@@ -267,7 +265,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
      * @param array $websites
      * @return array
      */
-    private function _getWebsiteIds($websites) {
+    private function _getWebsiteIds($websites)
+    {
         $ids = array();
         foreach ($websites as $website) {
             $ids[] = Mage::getResourceModel('core/website_collection')
@@ -285,7 +284,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
      * @param $code
      * @return bool|Varien_Object
      */
-    private function _getAttributeSet($code) {
+    private function _getAttributeSet($code)
+    {
 
         $entityTypeId = $this->_getEntityTypeId();
 
@@ -309,8 +309,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
      * @param $code
      * @return bool|Varien_Object
      */
-    private function _getAttribute($code) {
-
+    private function _getAttribute($code)
+    {
         $entityTypeId = $this->_getEntityTypeId();
 
         $attribute = Mage::getResourceModel('catalog/eav_mysql4_product_attribute_collection')
@@ -325,18 +325,21 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
         }
     }
 
-    private function _getEntityTypeId() {
+    private function _getEntityTypeId()
+    {
         return Mage::getModel('catalog/product')
             ->getResource()
             ->getEntityType()
             ->getId();
     }
 
-    private function _isStandardAttributeOption($key) {
+    private function _isStandardAttributeOption($key)
+    {
         return in_array($key,$this->_standardAttributes);
     }
 
-    private function _getAttributeOptionIdByValue(Mage_Catalog_Model_Resource_Eav_Attribute $attribute,$value) {
+    private function _getAttributeOptionIdByValue(Mage_Catalog_Model_Resource_Eav_Attribute $attribute,$value)
+    {
         $options = $attribute->getSource()->getAllOptions(false);
         foreach ($options as $option) {
             if ($option['label'] == $value) {
@@ -346,8 +349,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
         return false;
     }
 
-    private function _downloadAndPrepareImages($sku,$images) {
-
+    private function _downloadAndPrepareImages($sku,$images)
+    {
         $tmpProductsFolder = Mage::getBaseDir('media').DIRECTORY_SEPARATOR.'product-images'.DIRECTORY_SEPARATOR;
 
         if (!is_array($images)) {
@@ -387,7 +390,8 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
         }
     }
 
-    private function _getProductDefaultSettings() {
+    private function _getProductDefaultSettings()
+    {
         return array(
             'type_id'           => 'simple',
             'has_options'       => 0,
@@ -404,5 +408,4 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
             'tax_class_id'      => 0
         );
     }
-
 }
