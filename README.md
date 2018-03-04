@@ -24,8 +24,20 @@ $ modman clone https://github.com/ctidigital/magento-configurator.git
 Download and copy the contents of the `src/` folder into your Magento base directory.
 
 ## How To Use
-Firstly, we'll need to configure our components. You can find how to configure your component under the heading "Components".
 
+### Master File
+Before using configurator you need to create a master configuration file at `app/etc/master.yaml`.
+
+This file determines the location of all component files, including files for specific environments.
+
+Please see the sample `master.yaml` for formatting guidelines.
+
+> Note: you are free to specify any environment names you want
+
+### Components
+Next, we'll need to configure our components. You can find how to configure your component under the heading "Components".
+
+### Running
 In your magento directory you can run the configurator using:
 ```sh
 $ cd <your magento install>/shell
@@ -42,10 +54,16 @@ $ php configurator.php --list-components
 $ php configurator.php --run-components "media,pages,staticBlocks"
 ```
 
+### Run Specific Environments
+```sh
+$ php configurator.php --env staging
+$ php configurator.php --run-components "media,pages,staticBlocks" --env dev
+```
+
 ## Components
 
 ### Websites & Stores
-This is generally the first component that should be configured when starting a project. This is used to create and maintain your websites, stores and store views and is controlled using a YAML which will require to be located in `app/etc/components/websites.yaml`. The general structure follows:
+This is generally the first component that should be configured when starting a project. This is used to create and maintain your websites, stores and store views and is controlled using YAML files, the location of which must be set in `app/etc/master.yaml`. The general structure follows:
 ```
 - websites:
   - website_code_1:
@@ -85,8 +103,7 @@ Sort orders will automatically be created based on the order the YAML is written
 
 ### Core Config Data
 
-After your websites have been correctly set up this is required to set up the core configuration elements for default (global), website level, and store view level. The end nodes require a `path` and a `value` which will be set in your Magento's `core_config_data`. If you don't know what the path should be, you can find it out by looking at the module's system.xml file or save a page with the configuration from within Magento's admin followed by saving the relevant section in System->Configuration and looking it up within your database's `core_config_data` table. The file will require to be in 
-`app/etc/components/config.yaml`. You can also find our `config.yaml` file as an example on how to structure the file.
+After your websites have been correctly set up this is required to set up the core configuration elements for default (global), website level, and store view level. The end nodes require a `path` and a `value` which will be set in your Magento's `core_config_data`. If you don't know what the path should be, you can find it out by looking at the module's system.xml file or save a page with the configuration from within Magento's admin followed by saving the relevant section in System->Configuration and looking it up within your database's `core_config_data` table. Again, YAML file locations must be set in `app/etc/master.yaml`. You can also find our `config.yaml` file as an example on how to structure the file.
 
 #### Default
 ```
@@ -233,7 +250,7 @@ Please note, certain attribute configurations follow certain rules so do ensure 
 
 ### Attribute Sets
 
-Having created out custom product attributes these will need to be included as part of an attribute set. For this we will require the file `app/etc/components/attribute-sets.yaml` and the contents of the file will follow as so:
+Having created out custom product attributes these will need to be included as part of an attribute set. Again, YAML file locations must be set in `app/etc/master.yaml` and the contents of the file will follow as so:
 ```
 - attribute_sets:
   -
