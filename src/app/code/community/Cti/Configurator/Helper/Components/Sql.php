@@ -6,7 +6,7 @@ class Cti_Configurator_Helper_Components_Sql extends Cti_Configurator_Helper_Com
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'sql.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'sql.yaml';
         $this->_filePath2 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'local_components' . DS . 'sql.yaml'; // Could be some symlinked file environment specific
 
     }

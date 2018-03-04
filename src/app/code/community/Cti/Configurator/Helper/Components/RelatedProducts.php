@@ -4,7 +4,7 @@ class Cti_Configurator_Helper_Components_RelatedProducts extends Cti_Configurato
     protected $_componentName = 'related_products';
 
     public function __construct() {
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'related-products.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'related-products.yaml';
     }
 
     protected function _processFile($globalFile,$localFile = null) {

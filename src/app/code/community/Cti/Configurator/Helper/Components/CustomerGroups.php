@@ -3,7 +3,7 @@ class Cti_Configurator_Helper_Components_CustomerGroups extends Cti_Configurator
 
     public function __construct() {
         $this->_componentName = 'customer_groups';
-        $this->_filePath1 = Mage::getBaseDir().DS.'app'.DS.'etc'.DS.'components'.DS.'customer-groups.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'customer-groups.yaml';
     }
 
     protected function _processFile($globalFile,$localFile = null) {

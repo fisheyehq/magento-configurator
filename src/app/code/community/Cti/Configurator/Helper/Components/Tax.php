@@ -14,7 +14,7 @@ class Cti_Configurator_Helper_Components_Tax extends Cti_Configurator_Helper_Com
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'tax.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'tax.yaml';
 
     }
 

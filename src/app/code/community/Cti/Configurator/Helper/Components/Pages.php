@@ -5,7 +5,7 @@ class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_C
     public function __construct()
     {
         $this->_componentName = 'pages';
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'pages.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'pages.yaml';
     }
 
     protected function _processFile($globalFile, $localFile = null)
@@ -161,7 +161,7 @@ class Cti_Configurator_Helper_Components_Pages extends Cti_Configurator_Helper_C
                 if ($value != "") {
 
                     // locate file path
-                    $filePath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'html' . DS . $value;
+                    $filePath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'html' . DS . $value;
 
                     // Check if the file exists
                     if (file_exists($filePath)) {

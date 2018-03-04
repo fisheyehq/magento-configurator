@@ -6,7 +6,7 @@ class Cti_Configurator_Helper_Components_Users extends Cti_Configurator_Helper_C
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'users.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'users.yaml';
 
     }
 

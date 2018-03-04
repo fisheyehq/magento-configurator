@@ -24,7 +24,7 @@ class Cti_Configurator_Helper_Components_Products extends Cti_Configurator_Helpe
     protected $_images = array();
 
     public function __construct() {
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'products.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'products.yaml';
     }
 
     protected function _processFile($globalFile,$localFile = null) {

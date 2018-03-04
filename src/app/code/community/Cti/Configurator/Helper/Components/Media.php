@@ -7,8 +7,8 @@ class Cti_Configurator_Helper_Components_Media extends Cti_Configurator_Helper_C
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'media.yaml';
-        $this->_filePath2 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'local_components' . DS . 'media.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'media.yaml';
+        $this->_filePath2 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'local_components' . DS . 'media.yaml';
 
         $this->_coreConfigModel = Mage::getModel('core/config');
 

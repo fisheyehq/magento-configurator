@@ -7,7 +7,7 @@ class Cti_Configurator_Helper_Components_Categories extends Cti_Configurator_Hel
     public function __construct()
     {
 
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'categories.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'categories.yaml';
 
     }
 

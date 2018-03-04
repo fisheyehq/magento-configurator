@@ -3,7 +3,7 @@ class Cti_Configurator_Helper_Components_Attributes extends Cti_Configurator_Hel
 
     public function __construct() {
         $this->_componentName = 'attributes';
-        $this->_filePath1 = Mage::getBaseDir().DS.'app'.DS.'etc'.DS.'components'.DS.'attributes.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'attributes.yaml';
     }
 
     protected function _processFile($globalFile,$localFile = null) {

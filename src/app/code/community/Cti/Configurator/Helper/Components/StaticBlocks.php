@@ -4,7 +4,7 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
     public function __construct()
     {
         $this->_componentName = 'staticblocks';
-        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'static-blocks.yaml';
+        $this->_filePath1 = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'static-blocks.yaml';
     }
 
     protected function _processFile($globalFile, $localFile = null)
@@ -153,7 +153,7 @@ class Cti_Configurator_Helper_Components_StaticBlocks extends Cti_Configurator_H
                 if ($value != "") {
 
                     // locate file path
-                    $filePath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'components' . DS . 'html' . DS . $value;
+                    $filePath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'configurator' . DS . 'html' . DS . $value;
 
                     // Check if the file exists
                     if (file_exists($filePath)) {
